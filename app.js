@@ -29,8 +29,8 @@ recognition.onstart = () => console.log('זיהוי קולי פעיל');
 recognition.onresult = e => {
   const current = e.resultIndex;
   const transcript = e.results[current][0].transcript;
-  let mobileRepeatBug = (current == 1 && transcript == e.results[0][0].transcript);
-  if (!mobileRepeatBug){
+  // let mobileRepeatBug = (current == 1 && transcript == e.results[0][0].transcript);
+  // if (!mobileRepeatBug){
     let speak = () => {
       return VoiceRSS.speech({
         key: '722568c711d2481887829b793a098cf5',
@@ -53,6 +53,6 @@ recognition.onresult = e => {
     speak()
     
   }
-}
+// }
 
 btn.addEventListener('click',() => recognition.start())
