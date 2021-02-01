@@ -41,7 +41,7 @@ recognition.onresult = e => {
     })
   }
   speak()
-  content.textContent = transcript
+  return content.textContent = transcript
   
 }
 
