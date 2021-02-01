@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <title>this is my web title</title>
+  <title>זיהוי קולי בעברית</title>
   <style>
     *{
       padding: 0;
@@ -33,16 +32,32 @@
       border-radius: 7px;
       color: wheat;
       font-size: 3rem;
-      transition: .5s ease-in-out;
+      transition: .3s ease-in-out;
+      box-shadow: 0 -4px 50px black;
     }
     .btn:hover{
-      background-color: #332;
-      transition: .5s ease-in-out;
+      transition: .3s ease-in-out;
+      border-top: 5px solid black;
+    }
+    .btn:active{
+      transform: scale(0.95);
     }
     h1{
       text-align: center;
       letter-spacing: 3px;
       font-size: 3rem;
+    }
+    footer{
+      position: absolute;
+      bottom: 0;
+      background-color: white;
+      width: 100%;
+      text-align: center;
+      color: #333;
+      font-weight: 700;
+    }
+    footer a{
+      text-decoration: none;
     }
   </style>
 <script src='./voicerss-tts.min.js'></script>
@@ -51,6 +66,9 @@
   <div class="container">
     <button class="btn">התחל זיהוי קולי</button>
     <h1 class="content"></h1>
+    <footer>
+      נבנה באהבה על ידי <a href="https://github.com/gurelbs">גוראל בן שבת</a>
+    </footer>
   </div>
 <script src="./app.js"></script>
 </body>
