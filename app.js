@@ -6,10 +6,10 @@ let tryAgain = `תנסה שוב בבקשה.`
 let moon = `המרחק לירח הוא 63 מיליון קילומטר`
 let yourName = `השם שלי, הוא יוחאי. אני עוזר דיגיטלי בעברית.`
 
-let googleSearch = (e) => window.open(`https://www.google.com/search?q=${e}`) 
-let youtube = (e) => window.open(`https://www.youtube.com/results?search_query=${e}`)
+let googleSearch = (e) => window.open(`http://www.google.com/search?q=${e}`) 
+let youtube = (e) => window.open(`http://www.youtube.com/results?search_query=${e}`)
+let wikiSearch = e => window.open(`https://he.wikipedia.org/wiki/${e}`)
 let arr = [];
-
 let wordSearch = someWord => {
   someWord = someWord.split(' ')
   arr.push(someWord)    
@@ -29,8 +29,6 @@ recognition.onstart = () => console.log('זיהוי קולי פעיל');
 recognition.onresult = e => {
   const current = e.resultIndex;
   const transcript = e.results[current][0].transcript;
-  // let mobileRepeatBug = (current == 1 && transcript == e.results[0][0].transcript);
-  // if (!mobileRepeatBug){
     let speak = () => {
       return VoiceRSS.speech({
         key: '722568c711d2481887829b793a098cf5',
@@ -39,8 +37,10 @@ recognition.onresult = e => {
              transcript == 'מה המרחק לירח' ? moon : 
              transcript == 'מה השם שלך' ? yourName : 
              transcript.includes('חפש בגוגל') !== false ? googleSearch(wordSearch(transcript)) && location.reload():
-             transcript.includes('חפש ביוטיוב') !== false ? youtube(wordSearch(transcript)) && location.reload()
-             : `לא הבנתי מה אתה רוצה ממני, כשאתה אומר ${transcript}. ,` + tryAgain,
+             transcript.includes('חפש ביוטיוב') !== false ? youtube(wordSearch(transcript)) && location.reload() : 
+             transcript.includes('חפש בויקיפדיה') !== false ? wikiSearch(wordSearch(transcript)) && location.reload() :
+             transcript.includes('הפעל רדיו') !== false ? window.open('https://www.rlive.co.il/station/glgltz') && location.reload()
+             : `לא הבנתי, ${tryAgain}`,
         hl: 'he-il',
         r:0, 
         c: 'mp3',
@@ -51,8 +51,5 @@ recognition.onresult = e => {
     content.textContent = transcript
     console.log(transcript);
     speak()
-    
   }
-// }
-
 btn.addEventListener('click',() => recognition.start())
